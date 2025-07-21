@@ -1,0 +1,17 @@
+.dpab-panel {
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+    padding: 15px;
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    width: 300px;
+    z-index: 99999;
+}
+
+.dpab-panel--open {
+    display: block;
+}
