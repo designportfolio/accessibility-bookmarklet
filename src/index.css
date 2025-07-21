@@ -42,11 +42,30 @@
     width: 1.5em;
 }
 
-/* HEADINGS */
-.dpab__heading {
+.dpab__marker {
     background-color: yellow;
     color: black;
-    font-family: sans-serif;
-    font-size: 16px;
-    font-weight: bold;
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+/* IMAGES */
+.dpab__image {
+    display: inline-block;
+    outline-style: dashed;
+    outline-width: 3px;
+    position: relative;
+
+    .dpab__marker {
+        position: absolute;
+    }
+}
+
+.dpab__image--valid {
+    outline-color: green;
+}
+
+.dpab__image--invalid {
+    outline-color: red;
 }

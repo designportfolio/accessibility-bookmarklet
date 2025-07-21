@@ -5,7 +5,7 @@ export default class Headings
         this.description = "Identify heading tags in the document";
 
         const marker = document.createElement('span');
-        marker.classList.add('dpab__heading');
+        marker.classList.add('dpab__marker');
         this.marker = marker;
     }
 
@@ -25,7 +25,7 @@ export default class Headings
 
     disable() {
         document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((heading) => {
-            heading.querySelectorAll('.dpab__heading').forEach((marker) => marker.remove());
+            heading.querySelector('.dpab__marker').remove();
         });
     }
 }

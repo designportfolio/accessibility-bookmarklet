@@ -1,8 +1,10 @@
 import './index.css';
 import Headings from './bookmarklet/headings';
+import Images from './bookmarklet/images';
 
 const bookmarklets = [
     new Headings(),
+    new Images(),
 ];
 
 // main functionality
@@ -57,7 +59,7 @@ const attachHandler = (node, callback, eventType = 'click') => {
         const el = appendHtml(`<li class=""><label title="${obj.description}"><input type="checkbox"> ${obj.name}</label>`, bookmarkList);
         attachHandler(el, (e) => {
             e.target.checked ? obj.enable() : obj.disable();
-        });
+        }, 'change');
     });
 
     main();
