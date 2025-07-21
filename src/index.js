@@ -1,10 +1,12 @@
 import './index.css';
 import Headings from './bookmarklet/headings';
 import Images from './bookmarklet/images';
+import Svg from './bookmarklet/svg';
 
 const bookmarklets = [
     new Headings(),
     new Images(),
+    new Svg(),
 ];
 
 // main functionality

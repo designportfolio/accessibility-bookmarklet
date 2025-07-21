@@ -1,12 +1,14 @@
-export default class Images
+import Bookmarklet from './bookmarklet';
+
+export default class Images extends Bookmarklet
 {
     constructor() {
+        super({
+            selector: 'img',
+        });
+
         this.name = "Images";
         this.description = "";
-
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('dpab__image');
-        this.wrapper = wrapper;
 
         this.markers = {};
         const markerBase = document.createElement('span');
@@ -25,40 +27,28 @@ export default class Images
     }
 
     enable() {
-        document.querySelectorAll('img').forEach((img) => {
-            const wrapper = this.wrapper.cloneNode();
-            img.parentNode.insertBefore(wrapper, img);
-            wrapper.appendChild(img);
-
+        super.enable((wrapper, img) => {
             if (!img.hasAttribute('alt')) {
                 wrapper.prepend(this.markers.missing.cloneNode(true));
-                wrapper.classList.add('dpab__image--invalid');
+                wrapper.classList.add('dpab__wrapper--invalid');
             } else {
                 const alt = img.getAttribute('alt');
 
                 if (alt.length === 0) {
                     wrapper.prepend(this.markers.decorative.cloneNode(true));
-                    wrapper.classList.add('dpab__image--valid');
+                    wrapper.classList.add('dpab__wrapper--valid');
                 } else if (alt.trim().length === 0) {
                     wrapper.prepend(this.markers.incorrect.cloneNode(true));
-                    wrapper.classList.add('dpab__image--invalid');
+                    wrapper.classList.add('dpab__wrapper--invalid');
                 } else {
                     wrapper.prepend(this.markers.normal.cloneNode(true));
-                    wrapper.classList.add('dpab__image--valid');
+                    wrapper.classList.add('dpab__wrapper--valid');
 
                     const altText = document.createElement('span');
                     altText.textContent = `alt: ${alt}`;
                     wrapper.append(altText);
                 }
             }
-        });
-    }
-
-    disable() {
-        document.querySelectorAll('img').forEach((img) => {
-            const wrapper = img.parentNode;
-            wrapper.parentNode.appendChild(img);
-            wrapper.remove();
         });
     }
 }

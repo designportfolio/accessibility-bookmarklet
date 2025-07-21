@@ -42,6 +42,7 @@
     width: 1.5em;
 }
 
+/* GENERIC */
 .dpab__marker {
     background-color: yellow;
     color: black;
@@ -51,7 +52,7 @@
 }
 
 /* IMAGES */
-.dpab__image {
+.dpab__wrapper {
     display: inline-block;
     outline-style: dashed;
     outline-width: 3px;
@@ -62,10 +63,10 @@
     }
 }
 
-.dpab__image--valid {
+.dpab__wrapper--valid {
     outline-color: green;
 }
 
-.dpab__image--invalid {
+.dpab__wrapper--invalid {
     outline-color: red;
 }
