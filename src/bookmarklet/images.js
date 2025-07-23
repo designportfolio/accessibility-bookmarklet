@@ -5,23 +5,18 @@ export default class Images extends ReplacedElement
     constructor() {
         super({
             selector: 'img',
+            markers: {
+                'missing': 'Missing alt attribute',
+                'decorative': 'Decorative',
+                'incorrect': 'Whitespace alt attribute',
+                'normal': 'Accessible',
+            },
         });
 
         this.name = "Images";
         this.description = "";
 
         this.textHelper = (node) => node.getAttribute('alt');
-
-        for (const [k, v] of Object.entries({
-            'missing': 'Missing alt attribute',
-            'decorative': 'Decorative image',
-            'incorrect': 'Whitespace content',
-            'normal': 'Normal image',
-        })) {
-            const marker = this.markerBase.cloneNode();
-            marker.textContent = v;
-            this.markers[k] = marker
-        }
     }
 
     action(state, wrapper) {

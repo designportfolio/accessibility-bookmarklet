@@ -10,6 +10,12 @@ export default class ReplacedElement extends Bookmarklet
 
         this.markerBase = document.createElement('span');
         this.markerBase.classList.add('dpab__marker');
+
+        for (const [k, v] of Object.entries(props.markers)) {
+            const marker = this.markerBase.cloneNode();
+            marker.innerHTML = `<b>&lt;${props.selector}></b> ${v}`;
+            this.markers[k] = marker
+        }
     }
 
     enable(textHelper) {
