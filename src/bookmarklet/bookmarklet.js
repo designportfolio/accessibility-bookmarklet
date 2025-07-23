@@ -1,4 +1,5 @@
-export default class Bookmarklet {
+export default class Bookmarklet
+{
     #selector;
     wrapper;
 
@@ -12,10 +13,12 @@ export default class Bookmarklet {
 
     enable(callback) {
         document.querySelectorAll(this.#selector).forEach((node) => {
+            // wrap each element
             const wrapper = this.wrapper.cloneNode();
             node.parentNode.insertBefore(wrapper, node);
             wrapper.appendChild(node);
 
+            // element specific code
             callback(wrapper, node);
         });
     }
@@ -25,7 +28,7 @@ export default class Bookmarklet {
             const wrapper = node.parentNode;
 
             // move node back to original position
-            wrapper.parentNode.appendChild(node);
+            wrapper.parentNode.insertBefore(node,wrapper);
 
             // delete wrapper and all other created nodes
             wrapper.remove();

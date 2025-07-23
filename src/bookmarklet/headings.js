@@ -1,6 +1,12 @@
-export default class Headings
+import Bookmarklet from './bookmarklet';
+
+export default class Headings extends Bookmarklet
 {
     constructor() {
+        super({
+            selector: 'h1, h2, h3, h4, h5, h6',
+        });
+
         this.name = "Headings";
         this.description = "Identify heading tags in the document";
 
@@ -10,7 +16,7 @@ export default class Headings
     }
 
     enable() {
-        document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((heading) => {
+        super.enable(((wrapper, heading) => {
             const marker = this.marker.cloneNode();
             let text = heading.tagName.toLowerCase();
 
@@ -19,13 +25,7 @@ export default class Headings
             }
 
             marker.textContent = `<${text}>`;
-            heading.prepend(marker);
-        });
-    }
-
-    disable() {
-        document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((heading) => {
-            heading.querySelector('.dpab__marker').remove();
-        });
+            wrapper.prepend(marker);
+        }));
     }
 }

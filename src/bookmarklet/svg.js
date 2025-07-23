@@ -1,22 +1,29 @@
 import ReplacedElement from './replaced-element';
 
-export default class Images extends ReplacedElement
+export default class Svg extends ReplacedElement
 {
     constructor() {
         super({
-            selector: 'img',
+            selector: 'svg',
         });
 
-        this.name = "Images";
+        this.name = "Inline SVG";
         this.description = "";
 
-        this.textHelper = (node) => node.getAttribute('alt');
+        this.textHelper = (node) => {
+            const titleNode = Array.from(node.children).find((node) => node.tagName === 'title');
+
+            if (titleNode === undefined) {
+                return null;
+            } else {
+                return titleNode.textContent;
+            }
+        }
 
         for (const [k, v] of Object.entries({
-            'missing': 'Missing alt attribute',
-            'decorative': 'Decorative image',
-            'incorrect': 'Whitespace content',
-            'normal': 'Normal image',
+            'decorative': 'Decorative svg',
+            'empty': 'Empty (or whitespace) title tag',
+            'normal': 'Normal svg',
         })) {
             const marker = this.markerBase.cloneNode();
             marker.textContent = v;
@@ -27,15 +34,15 @@ export default class Images extends ReplacedElement
     action(state, wrapper) {
         switch (state) {
             case 'null':
-                wrapper.prepend(this.markers.missing.cloneNode(true));
-                wrapper.classList.add('dpab__wrapper--invalid');
-                break;
-            case 'empty':
                 wrapper.prepend(this.markers.decorative.cloneNode(true));
                 wrapper.classList.add('dpab__wrapper--valid');
                 break;
+            case 'empty':
+                wrapper.prepend(this.markers.empty.cloneNode(true));
+                wrapper.classList.add('dpab__wrapper--invalid');
+                break;
             case 'whitespace':
-                wrapper.prepend(this.markers.incorrect.cloneNode(true));
+                wrapper.prepend(this.markers.empty.cloneNode(true));
                 wrapper.classList.add('dpab__wrapper--invalid');
                 break;
             case 'normal':

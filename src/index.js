@@ -1,11 +1,13 @@
 import './index.css';
 import Headings from './bookmarklet/headings';
+import Iframe from './bookmarklet/iframe';
 import Images from './bookmarklet/images';
 import Svg from './bookmarklet/svg';
 
 const bookmarklets = [
     new Headings(),
     new Images(),
+    new Iframe(),
     new Svg(),
 ];
 
