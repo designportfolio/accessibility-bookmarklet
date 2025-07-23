@@ -6,6 +6,7 @@ export default class Bookmarklet
     constructor(props) {
         const wrapper = document.createElement('div');
         wrapper.classList.add('dpab__wrapper');
+        wrapper.dataset.type = props.type;
         this.wrapper = wrapper;
 
         this.#selector = props.selector;

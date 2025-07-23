@@ -24,8 +24,8 @@
         margin-top: 0;
     }
 
-    ol {
-        margin-bottom: 0;
+    button {
+        cursor: pointer;
     }
 }
 
@@ -36,7 +36,6 @@
 .dpab__close {
     align-items: center;
     border: 0;
-    cursor: pointer;
     display: flex;
     font-size: inherit;
     height: 1.5em;
@@ -49,25 +48,25 @@
     width: 1.5em;
 }
 
-/* GENERIC */
-.dpab__marker {
-    background-color: yellow;
-    color: black;
-    font-family: monospace;
-    font-size: 12px;
-    padding: 2px;
+.dpab__download {
+    font-size: inherit;
 }
 
-/* IMAGES */
+/* GENERIC */
 .dpab__wrapper {
     display: inline-block;
     outline-style: dashed;
     outline-width: 3px;
     position: relative;
+}
 
-    .dpab__marker {
-        position: absolute;
-    }
+.dpab__marker {
+    background-color: black;
+    color: white;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 2px;
+    position: absolute;
 }
 
 .dpab__wrapper--valid {
@@ -86,4 +85,10 @@
         background-color: var(--dpab-invalid-bg);
         color: var(--dpab-invalid-fg);
     }
+}
+
+.dpab__accessible-content {
+    display: block;
+    font-family: sans-serif;
+    font-size: 16px;
 }

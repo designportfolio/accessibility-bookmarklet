@@ -4,13 +4,14 @@ export default class Iframe extends ReplacedElement
 {
     constructor() {
         super({
-            selector: 'iframe',
             markers: {
                 'decorative': 'Decorative',
                 'empty': 'Empty title attribute',
                 'whitespace': 'Whitespace title attribute',
                 'normal': 'Accessible',
-            }
+            },
+            selector: 'iframe',
+            type: 'Iframe',
         });
 
         this.name = "Inline frame (iframe)";

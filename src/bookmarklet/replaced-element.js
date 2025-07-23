@@ -31,9 +31,10 @@ export default class ReplacedElement extends Bookmarklet
             } else {
                 this.action('normal', wrapper);
 
-                const label = document.createElement('span');
-                label.textContent = `Accessible content: ${text}`;
-                wrapper.append(label);
+                const accessibleContent = document.createElement('span');
+                accessibleContent.classList.add('dpab__accessible-content');
+                accessibleContent.innerHTML = `<strong>Accessible content:</strong> ${text}`;
+                wrapper.append(accessibleContent);
             }
         });
     }

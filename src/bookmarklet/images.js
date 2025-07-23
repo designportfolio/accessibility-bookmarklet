@@ -4,13 +4,14 @@ export default class Images extends ReplacedElement
 {
     constructor() {
         super({
-            selector: 'img',
             markers: {
                 'missing': 'Missing alt attribute',
                 'decorative': 'Decorative',
                 'incorrect': 'Whitespace alt attribute',
                 'normal': 'Accessible',
             },
+            selector: 'img',
+            type: 'Image',
         });
 
         this.name = "Images";

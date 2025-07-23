@@ -4,13 +4,14 @@ export default class Svg extends ReplacedElement
 {
     constructor() {
         super({
-            selector: 'svg',
             markers: {
                 'decorative': 'Decorative',
                 'empty': 'Empty title tag',
                 'whitespace': 'Whitespace title tag',
                 'normal': 'Accessible',
             },
+            selector: 'svg',
+            type: 'SVG',
         });
 
         this.name = "Inline SVG";

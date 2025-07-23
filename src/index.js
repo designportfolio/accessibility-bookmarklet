@@ -38,6 +38,42 @@ const attachHandler = (node, callback, eventType = 'click') => {
     node.addEventListener(eventType, callback);
 };
 
+const generateReportData = () => {
+    const data = Array.from(document.querySelectorAll('.dpab__wrapper')).map((el) => {
+        let validity;
+
+        if (el.classList.contains('dpab__wrapper--valid')) {
+            validity = 'Yes';
+        } else if (el.classList.contains('dpab__wrapper--invalid')) {
+            validity = 'No';
+        } else {
+            validity = 'Unknown';
+        }
+
+        return [
+            el.dataset.type,
+            validity,
+        ];
+    });
+    data.unshift(['Type', 'Valid']);
+    return data;
+};
+
+const prepareCsv = (data) => data.map(row => row.map((cell) => '"' + cell.toString().replaceAll('"', '""') + '"').join(',')).join('\n');
+
+const downloadReport = (content) => {
+    const blob = new Blob([content], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+
+    a.href = url;
+    a.download = `dpab-report-${new Date().toISOString()}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+};
+
 // init code
 (() => {
     // append stylesheet
@@ -49,12 +85,22 @@ const attachHandler = (node, callback, eventType = 'click') => {
             <button type="button" class="dpab__close" aria-label="Close">✕</button>
             <p>Accessibility bookmarklet</p>
             <ol></ol>
+            <button type="button" class="dpab__download">Download report</button>
         </div>
     `);
 
     // attach close button
     attachHandler(document.querySelector('.dpab__close'), () => {
         document.querySelector('.dpab__panel').classList.remove('dpab__panel--open');
+    });
+
+    // attach download button
+    attachHandler(document.querySelector('.dpab__download'), () => {
+        // Array.from(document.querySelectorAll('.dpab__wrapper')).;
+        const data = generateReportData();
+        console.log(data);
+        const csvContent = prepareCsv(data);
+        // downloadReport(csvContent);
     });
 
     //
