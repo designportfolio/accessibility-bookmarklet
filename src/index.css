@@ -73,7 +73,10 @@
 }
 
 .dpab__accessible-content {
+    background-color: white;
+    color: black;
     display: block;
+    word-break: break-all;
 }
 
 .dpab__wrapper--valid {

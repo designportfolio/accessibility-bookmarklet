@@ -11,6 +11,8 @@ const bookmarklets = [
     new Svg(),
 ];
 
+console.log(import.meta.env);
+
 // main functionality
 const main = () => {
     // open/close panel
@@ -76,8 +78,10 @@ const downloadReport = (content) => {
 
 // init code
 (() => {
-    // append stylesheet
-    // appendHtml('<link rel="stylesheet" href="http://accessibility-bookmarklet.test/index.css">');
+    if (import.meta.env.PROD) {
+        // append stylesheet
+        appendHtml(`<link rel="stylesheet" href="${import.meta.env.VITE_ASSET_URL}index.css">`);
+    }
 
     // create panel
     appendHtml(`
