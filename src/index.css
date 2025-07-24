@@ -56,17 +56,24 @@
 .dpab__wrapper {
     display: inline-block;
     outline-style: dashed;
-    outline-width: 3px;
+    outline-width: 2px;
     position: relative;
+}
+
+.dpab__marker, .dpab__accessible-content {
+    font-family: monospace;
+    font-size: 12px;
 }
 
 .dpab__marker {
     background-color: black;
     color: white;
-    font-family: monospace;
-    font-size: 12px;
     padding: 2px;
     position: absolute;
+}
+
+.dpab__accessible-content {
+    display: block;
 }
 
 .dpab__wrapper--valid {
@@ -85,10 +92,4 @@
         background-color: var(--dpab-invalid-bg);
         color: var(--dpab-invalid-fg);
     }
-}
-
-.dpab__accessible-content {
-    display: block;
-    font-family: sans-serif;
-    font-size: 16px;
 }

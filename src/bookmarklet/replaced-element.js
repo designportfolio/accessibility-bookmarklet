@@ -13,7 +13,7 @@ export default class ReplacedElement extends Bookmarklet
 
         for (const [k, v] of Object.entries(props.markers)) {
             const marker = this.markerBase.cloneNode();
-            marker.innerHTML = `<b>&lt;${props.selector}></b> ${v}`;
+            marker.innerHTML = `<strong>&lt;${props.selector}></strong> ${v}`;
             this.markers[k] = marker
         }
     }
@@ -24,18 +24,39 @@ export default class ReplacedElement extends Bookmarklet
 
             if (text === null) {
                 this.action('null', wrapper);
-            } else if (text.length === 0) {
-                this.action('empty', wrapper);
-            } else if (text.trim().length === 0) {
-                this.action('whitespace', wrapper);
             } else {
-                this.action('normal', wrapper);
+                const processedText = this.#processText(text);
 
-                const accessibleContent = document.createElement('span');
-                accessibleContent.classList.add('dpab__accessible-content');
-                accessibleContent.innerHTML = `<strong>Accessible content:</strong> ${text}`;
-                wrapper.append(accessibleContent);
+                if (text.length === 0) {
+                    this.action('empty', wrapper);
+                } else if (text.trim().length === 0) {
+                    this.action('whitespace', wrapper);
+                    this.#addAccessibleContent(wrapper, processedText);
+                } else {
+                    this.action('normal', wrapper);
+                    this.#addAccessibleContent(wrapper, processedText);
+                }
             }
+        });
+    }
+
+    #addAccessibleContent(wrapper, text) {
+        const accessibleContent = document.createElement('span');
+        accessibleContent.classList.add('dpab__accessible-content');
+        accessibleContent.innerHTML = `<strong>Text alternative:</strong> ${text}`;
+        wrapper.append(accessibleContent);
+    }
+
+    #processText(text) {
+        return text.replace(/\s/g, (m) => {
+            const mapped = {
+                ' ': '·',
+                '\t': '\\t',
+                '\n': '\\n',
+                '\r': '\\r',
+            }[m];
+
+            return mapped || m;
         });
     }
 }

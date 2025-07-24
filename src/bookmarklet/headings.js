@@ -22,7 +22,10 @@ export default class Headings extends Bookmarklet
             let text = heading.tagName.toLowerCase();
 
             if (heading.classList.length) {
+                wrapper.classList.add(`dpab__wrapper--valid`);
                 text += ` class="${Array.from(heading.classList.values()).join(' ')}"`;
+            } else {
+                wrapper.classList.add(`dpab__wrapper--invalid`);
             }
 
             marker.textContent = `<${text}>`;
