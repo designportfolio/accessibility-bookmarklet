@@ -1,0 +1,25 @@
+html {
+    font-size: 20px;
+}
+
+body {
+    font-size: 1rem;
+    margin: 2rem auto;
+    max-width: 1080px;
+}
+
+.demo-heading {
+
+}
+
+.demo-row {
+    flex-direction: row;
+    display: flex;
+    gap: 2rem;
+}
+
+iframe {
+    border: 0;
+    height: 180px;
+    width: 180px;
+}

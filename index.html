@@ -3,49 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookmarklet tester</title>
+    <title>Accessibility bookmarklet demos</title>
 </head>
 <body>
-    <h1 class="main heading">Accessibility tester</h1>
+    <h1 class="demo-heading">Accessibility bookmarklet demos</h1>
 
-    <h1>This is a heading level 1.</h1>
-    <p>This is another paragraph.</p>
-    <h2>This is a heading level 2.</h2>
-    <p>This is another paragraph.</p>
-    <h3>This is a heading level 3.</h3>
-    <p>This is another paragraph.</p>
-    <h4>This is a heading level 4.</h4>
-    <p>This is another paragraph.</p>
-    <h5>This is a heading level 5.</h5>
-    <p>This is another paragraph.</p>
-    <h6>This is a heading level 6.</h6>
-    <p>This is another paragraph.</p>
+    <h2 class="demo-heading">Headings</h2>
 
-    <p><img src="https://placehold.co/180"></p>
-    <p><img src="https://placehold.co/180" alt=""></p>
-    <p><img src="https://placehold.co/180" alt="
-"></p>
-    <p><img src="https://placehold.co/180" alt=" "></p>
-    <p><img src="https://placehold.co/180" alt="Example"></p>
+    <div class="demo-row">
+        <div>
+            <h1 class="hero">This is a heading level 1.</h1>
+            <h2 class="hero">This is a heading level 2.</h2>
+            <h3 class="hero">This is a heading level 3.</h3>
+            <h4 class="hero">This is a heading level 4.</h4>
+            <h5 class="hero">This is a heading level 5.</h5>
+            <h6 class="hero">This is a heading level 6.</h6>
+        </div>
+        <div>
+            <h1>This is a heading level 1.</h1>
+            <h2>This is a heading level 2.</h2>
+            <h3>This is a heading level 3.</h3>
+            <h4>This is a heading level 4.</h4>
+            <h5>This is a heading level 5.</h5>
+            <h6>This is a heading level 6.</h6>
+        </div>
+    </div>
 
-    <iframe></iframe>
-    <iframe title=""></iframe>
-    <iframe title=" "></iframe>
-    <iframe title="Content"></iframe>
+    <hr>
 
-    <svg></svg>
+    <h2 class="demo-heading">Images</h2>
 
-    <svg>
-        <title></title>
-    </svg>
+    <div class="demo-row">
+        <div><img src="https://placehold.co/180"></div>
+        <div><img src="https://placehold.co/180" alt=""></div>
+        <div><img src="https://placehold.co/180" alt="
+    "></div>
+        <div><img src="https://placehold.co/180" alt=" "></div>
+        <div><img src="https://placehold.co/180" alt="Example"></div>
+    </div>
 
-    <svg>
-        <title> </title>
-    </svg>
+    <hr>
 
-    <svg>
-        <title>Lorem ipsum</title>
-    </svg>
+    <h2 class="demo-heading">Iframes</h2>
+
+    <div class="demo-row">
+        <iframe src="https://placehold.co/180"></iframe>
+        <iframe src="https://placehold.co/180" title=""></iframe>
+        <iframe src="https://placehold.co/180" title=" "></iframe>
+        <iframe src="https://placehold.co/180" title="Content"></iframe>
+    </div>
+
+    <hr>
+
+    <h2 class="demo-heading">SVG</h2>
+
+    <div class="demo-row">
+        <svg></svg>
+        <svg>
+            <title></title>
+        </svg>
+        <svg>
+            <title> </title>
+        </svg>
+        <svg>
+            <title>Lorem ipsum</title>
+        </svg>
+    </div>
 
     <script type="module" src="/src/index.js"></script>
 </body>
