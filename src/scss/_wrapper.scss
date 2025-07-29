@@ -1,0 +1,34 @@
+@use "vars";
+
+#{vars.$wrapper} {
+    outline-style: dashed;
+    outline-width: 2px;
+    position: relative;
+
+    // display
+    &--inline-block {
+        display: inline-block;
+    }
+
+    &--block {
+        display: block;
+    }
+
+    &--valid {
+        outline-color: var(--dpab-valid-bg);
+
+        #{vars.$marker} {
+            background-color: var(--dpab-valid-bg);
+            color: var(--dpab-valid-fg);
+        }
+    }
+
+    &--invalid {
+        outline-color: var(--dpab-invalid-bg);
+
+        #{vars.$marker} {
+            background-color: var(--dpab-invalid-bg);
+            color: var(--dpab-invalid-fg);
+        }
+    }
+}

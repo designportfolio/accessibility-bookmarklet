@@ -16,6 +16,9 @@ export default class Bookmarklet
         document.querySelectorAll(this.#selector).forEach((node) => {
             // wrap each element
             const wrapper = this.wrapper.cloneNode();
+            const displayClass = window.getComputedStyle(node).display.includes('inline') ? 'inline-block' : 'block';
+            wrapper.classList.add(`dpab__wrapper--${displayClass}`);
+
             node.parentNode.insertBefore(wrapper, node);
             wrapper.appendChild(node);
 

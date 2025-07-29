@@ -1,4 +1,5 @@
-import './index.css';
+import './scss/index.scss';
+import './demo.css';
 import Headings from './bookmarklet/headings';
 import Iframe from './bookmarklet/iframe';
 import Images from './bookmarklet/images';

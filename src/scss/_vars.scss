@@ -1,0 +1,12 @@
+$root: 'dpab';
+$class: '.dpab';
+$panel: #{$class}__panel;
+$wrapper: #{$class}__wrapper;
+$marker: #{$class}__marker;
+
+:root {
+    --#{$root}-valid-bg: green;
+    --#{$root}-valid-fg: white;
+    --#{$root}-invalid-bg: red;
+    --#{$root}-invalid-fg: white;
+}
