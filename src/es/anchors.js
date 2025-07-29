@@ -8,6 +8,6 @@ export default class Anchors extends Base
             type: 'Anchor',
         });
 
-        this.name = "Anchors";
+        this.name = "Anchors/links";
     }
 }
