@@ -2,6 +2,9 @@ import ReplacedElement from './replaced-element';
 
 export default class Images extends ReplacedElement
 {
+    name = "Images";
+    selectors = ['img'];
+
     constructor() {
         super({
             markers: {
@@ -10,12 +13,7 @@ export default class Images extends ReplacedElement
                 'incorrect': 'Whitespace alt attribute',
                 'normal': 'Accessible',
             },
-            selectors: ['img'],
-            type: 'Image',
         });
-
-        this.name = "Images";
-        this.description = "";
 
         this.textHelper = (node) => node.getAttribute('alt');
     }

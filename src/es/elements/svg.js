@@ -2,6 +2,9 @@ import ReplacedElement from './replaced-element';
 
 export default class Svg extends ReplacedElement
 {
+    name = "Inline SVG";
+    selectors = ['svg'];
+
     constructor() {
         super({
             markers: {
@@ -10,12 +13,7 @@ export default class Svg extends ReplacedElement
                 'whitespace': 'Whitespace title tag',
                 'normal': 'Accessible',
             },
-            selectors: ['svg'],
-            type: 'SVG',
         });
-
-        this.name = "Inline SVG";
-        this.description = "";
 
         this.textHelper = (node) => {
             const titleNode = Array.from(node.children).find((node) => node.tagName === 'title');

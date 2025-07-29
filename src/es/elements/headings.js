@@ -2,15 +2,8 @@ import Base from './base';
 
 export default class Headings extends Base
 {
-    constructor() {
-        super({
-            selectors: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-            type: 'Heading',
-        });
-
-        this.name = "Headings";
-        this.description = "Identify heading tags in the document";
-    }
+    name = "Headings";
+    selectors = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 
     enable() {
         super.enable(((wrapper, heading) => {

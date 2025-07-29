@@ -1,6 +1,7 @@
 export default class Base
 {
-    #selectors;
+    name;
+    selectors;
     marker;
     wrapper;
 
@@ -8,19 +9,16 @@ export default class Base
         // create generic wrapper element
         const wrapper = document.createElement('div');
         wrapper.classList.add('dpab__wrapper');
-        wrapper.dataset.type = props.type;
         this.wrapper = wrapper;
 
         // create generic marker element
         const marker = document.createElement('span');
         marker.classList.add('dpab__marker');
         this.marker = marker;
-
-        this.#selectors = props.selectors;
     }
 
     enable(callback) {
-        this.#selectors.forEach((selector) => {
+        this.selectors.forEach((selector) => {
             const marker = this.marker.cloneNode(true);
             marker.innerHTML = `&lt;${selector}>`;
 
@@ -42,7 +40,7 @@ export default class Base
     }
 
     disable() {
-        this.#selectors.forEach((selector) => {
+        this.selectors.forEach((selector) => {
             this.#lookup(selector).forEach((node) => {
                 const wrapper = node.parentNode;
 

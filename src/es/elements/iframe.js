@@ -2,6 +2,9 @@ import ReplacedElement from './replaced-element';
 
 export default class Iframe extends ReplacedElement
 {
+    name = "Inline frame (iframe)";
+    selectors = ['iframe'];
+
     constructor() {
         super({
             markers: {
@@ -10,12 +13,7 @@ export default class Iframe extends ReplacedElement
                 'whitespace': 'Whitespace title attribute',
                 'normal': 'Accessible',
             },
-            selectors: ['iframe'],
-            type: 'Iframe',
         });
-
-        this.name = "Inline frame (iframe)";
-        this.description = "";
 
         this.textHelper = (node) => node.getAttribute('title');
     }

@@ -13,8 +13,8 @@ import ScreenreaderText from './es/tools/screenreader-text';
 const elements = [
     new Anchors(),
     new Headings(),
-    new Images(),
     new Iframe(),
+    new Images(),
     new Lists(),
     new Svg(),
 ];
@@ -122,7 +122,7 @@ const downloadReport = (content) => {
     //
     const elementList = document.querySelector('.dpab__elements');
     elements.forEach((obj) => {
-        const el = appendHtml(`<li class=""><label title="${obj.description}"><input type="checkbox"> ${obj.name}</label>`, elementList);
+        const el = appendHtml(`<li class=""><label><input type="checkbox"> ${obj.name}</label>`, elementList);
         attachHandler(el, (e) => {
             e.target.checked ? obj.enable() : obj.disable();
         }, 'change');
@@ -131,7 +131,7 @@ const downloadReport = (content) => {
     //
     const toolList = document.querySelector('.dpab__tools');
     tools.forEach((obj) => {
-        const el = appendHtml(`<li class=""><label title="${obj.description}"><input type="checkbox"> ${obj.name}</label>`, toolList);
+        const el = appendHtml(`<li class=""><label><input type="checkbox"> ${obj.name}</label>`, toolList);
         attachHandler(el, (e) => {
             e.target.checked ? obj.enable() : obj.disable();
         }, 'change');
