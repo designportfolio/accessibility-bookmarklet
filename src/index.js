@@ -1,11 +1,13 @@
 import './scss/index.scss';
 import './demo.css';
-import Headings from './bookmarklet/headings';
-import Iframe from './bookmarklet/iframe';
-import Images from './bookmarklet/images';
-import Svg from './bookmarklet/svg';
+import Anchors from './es/anchors';
+import Headings from './es/headings';
+import Iframe from './es/iframe';
+import Images from './es/images';
+import Svg from './es/svg';
 
 const bookmarklets = [
+    new Anchors(),
     new Headings(),
     new Images(),
     new Iframe(),

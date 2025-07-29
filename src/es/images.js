@@ -1,37 +1,37 @@
 import ReplacedElement from './replaced-element';
 
-export default class Iframe extends ReplacedElement
+export default class Images extends ReplacedElement
 {
     constructor() {
         super({
             markers: {
+                'missing': 'Missing alt attribute',
                 'decorative': 'Decorative',
-                'empty': 'Empty title attribute',
-                'whitespace': 'Whitespace title attribute',
+                'incorrect': 'Whitespace alt attribute',
                 'normal': 'Accessible',
             },
-            selector: 'iframe',
-            type: 'Iframe',
+            selectors: ['img'],
+            type: 'Image',
         });
 
-        this.name = "Inline frame (iframe)";
+        this.name = "Images";
         this.description = "";
 
-        this.textHelper = (node) => node.getAttribute('title');
+        this.textHelper = (node) => node.getAttribute('alt');
     }
 
     action(state, wrapper) {
         switch (state) {
             case 'null':
+                wrapper.prepend(this.markers.missing.cloneNode(true));
+                wrapper.classList.add('dpab__wrapper--invalid');
+                break;
+            case 'empty':
                 wrapper.prepend(this.markers.decorative.cloneNode(true));
                 wrapper.classList.add('dpab__wrapper--valid');
                 break;
-            case 'empty':
-                wrapper.prepend(this.markers.empty.cloneNode(true));
-                wrapper.classList.add('dpab__wrapper--invalid');
-                break;
             case 'whitespace':
-                wrapper.prepend(this.markers.whitespace.cloneNode(true));
+                wrapper.prepend(this.markers.incorrect.cloneNode(true));
                 wrapper.classList.add('dpab__wrapper--invalid');
                 break;
             case 'normal':

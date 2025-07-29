@@ -1,19 +1,15 @@
-import Bookmarklet from './bookmarklet';
+import Base from './base';
 
-export default class Headings extends Bookmarklet
+export default class Headings extends Base
 {
     constructor() {
         super({
-            selector: 'h1, h2, h3, h4, h5, h6',
+            selectors: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
             type: 'Heading',
         });
 
         this.name = "Headings";
         this.description = "Identify heading tags in the document";
-
-        const marker = document.createElement('span');
-        marker.classList.add('dpab__marker');
-        this.marker = marker;
     }
 
     enable() {

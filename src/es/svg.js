@@ -10,7 +10,7 @@ export default class Svg extends ReplacedElement
                 'whitespace': 'Whitespace title tag',
                 'normal': 'Accessible',
             },
-            selector: 'svg',
+            selectors: ['svg'],
             type: 'SVG',
         });
 

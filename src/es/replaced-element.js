@@ -1,6 +1,6 @@
-import Bookmarklet from './bookmarklet';
+import Base from './base';
 
-export default class ReplacedElement extends Bookmarklet
+export default class ReplacedElement extends Base
 {
     markers = {};
     textHelper;
@@ -14,7 +14,7 @@ export default class ReplacedElement extends Bookmarklet
         for (const [k, v] of Object.entries(props.markers)) {
             const marker = this.markerBase.cloneNode();
             marker.innerHTML = `<strong>&lt;${props.selector}></strong> ${v}`;
-            this.markers[k] = marker
+            this.markers[k] = marker;
         }
     }
 

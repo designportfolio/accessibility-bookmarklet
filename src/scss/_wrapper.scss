@@ -31,4 +31,8 @@
             color: var(--dpab-invalid-fg);
         }
     }
+
+    #{vars.$wrapper} {
+        margin: 5px;
+    }
 }
