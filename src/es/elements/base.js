@@ -24,7 +24,7 @@ export default class Base
             const marker = this.marker.cloneNode(true);
             marker.innerHTML = `&lt;${selector}>`;
 
-            document.querySelectorAll(selector).forEach((node) => {
+            this.#lookup(selector).forEach((node) => {
                 // wrap each element
                 const wrapper = this.wrapper.cloneNode();
                 const displayClass = window.getComputedStyle(node).display.includes('inline') ? 'inline-block' : 'block';
@@ -43,7 +43,7 @@ export default class Base
 
     disable() {
         this.#selectors.forEach((selector) => {
-            document.querySelectorAll(selector).forEach((node) => {
+            this.#lookup(selector).forEach((node) => {
                 const wrapper = node.parentNode;
 
                 // move node back to original position
@@ -53,5 +53,10 @@ export default class Base
                 wrapper.remove();
             });
         });
+    }
+
+    #lookup(selector) {
+        let results = [...document.querySelectorAll(selector)];
+        return results.filter((node) => !node.closest('.dpab__panel'));
     }
 }

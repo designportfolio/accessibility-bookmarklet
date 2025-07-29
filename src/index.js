@@ -1,17 +1,26 @@
 import './scss/index.scss';
 import './demo.css';
-import Anchors from './es/anchors';
-import Headings from './es/headings';
-import Iframe from './es/iframe';
-import Images from './es/images';
-import Svg from './es/svg';
 
-const bookmarklets = [
+import Anchors from './es/elements/anchors';
+import Headings from './es/elements/headings';
+import Iframe from './es/elements/iframe';
+import Images from './es/elements/images';
+import Lists from './es/elements/lists';
+import Svg from './es/elements/svg';
+
+import ScreenreaderText from './es/tools/screenreader-text';
+
+const elements = [
     new Anchors(),
     new Headings(),
     new Images(),
     new Iframe(),
+    new Lists(),
     new Svg(),
+];
+
+const tools = [
+    new ScreenreaderText(),
 ];
 
 // main functionality
@@ -88,9 +97,11 @@ const downloadReport = (content) => {
     appendHtml(`
         <div class="dpab__panel">
             <button type="button" class="dpab__close" aria-label="Close">✕</button>
-            <p>Accessibility bookmarklet</p>
-            <ol></ol>
-            <button type="button" class="dpab__download">Download report</button>
+            <h1>Accessibility bookmarklet</h1>
+            <h2>Elements</h2>
+            <ul class="dpab__elements"></ul>
+            <h2>Tools</h2>
+            <ul class="dpab__tools"></ul>
         </div>
     `);
 
@@ -100,18 +111,27 @@ const downloadReport = (content) => {
     });
 
     // attach download button
-    attachHandler(document.querySelector('.dpab__download'), () => {
-        // Array.from(document.querySelectorAll('.dpab__wrapper')).;
-        const data = generateReportData();
-        console.log(data);
-        const csvContent = prepareCsv(data);
-        // downloadReport(csvContent);
+    // attachHandler(document.querySelector('.dpab__download'), () => {
+    //     // Array.from(document.querySelectorAll('.dpab__wrapper')).;
+    //     const data = generateReportData();
+    //     console.log(data);
+    //     const csvContent = prepareCsv(data);
+    //     // downloadReport(csvContent);
+    // });
+
+    //
+    const elementList = document.querySelector('.dpab__elements');
+    elements.forEach((obj) => {
+        const el = appendHtml(`<li class=""><label title="${obj.description}"><input type="checkbox"> ${obj.name}</label>`, elementList);
+        attachHandler(el, (e) => {
+            e.target.checked ? obj.enable() : obj.disable();
+        }, 'change');
     });
 
     //
-    const bookmarkList = document.querySelector('.dpab__panel ol');
-    bookmarklets.forEach((obj) => {
-        const el = appendHtml(`<li class=""><label title="${obj.description}"><input type="checkbox"> ${obj.name}</label>`, bookmarkList);
+    const toolList = document.querySelector('.dpab__tools');
+    tools.forEach((obj) => {
+        const el = appendHtml(`<li class=""><label title="${obj.description}"><input type="checkbox"> ${obj.name}</label>`, toolList);
         attachHandler(el, (e) => {
             e.target.checked ? obj.enable() : obj.disable();
         }, 'change');

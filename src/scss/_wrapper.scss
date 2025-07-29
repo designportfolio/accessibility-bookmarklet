@@ -1,6 +1,7 @@
 @use "vars";
 
 #{vars.$wrapper} {
+    cursor: pointer;
     outline-style: dashed;
     outline-width: 2px;
     position: relative;
