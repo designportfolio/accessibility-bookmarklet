@@ -1,0 +1,10 @@
+@use "vars";
+
+#{vars.$info} {
+    @extend %marker;
+    border: inherit;
+    height: 24px;
+    right: 0;
+    top: 0;
+    width: 24px;
+}

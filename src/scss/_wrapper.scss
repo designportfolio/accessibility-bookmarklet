@@ -1,6 +1,7 @@
 @use "vars";
 
 #{vars.$wrapper} {
+    min-height: 24px;
     outline-style: dashed;
     outline-width: 2px;
     position: relative;

@@ -1,10 +1,5 @@
 @use "vars";
 
 #{vars.$marker} {
-    background-color: black;
-    color: white;
-    font-family: monospace;
-    font-size: 12px;
-    padding: 2px;
-    position: absolute;
+    @extend %marker;
 }

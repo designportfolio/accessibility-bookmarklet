@@ -1,6 +1,8 @@
 import './scss/index.scss';
 import './demo.css';
 
+import { createPopper } from '@popperjs/core';
+
 import Anchors from './es/elements/anchors';
 import Headings from './es/elements/headings';
 import Iframe from './es/elements/iframe';

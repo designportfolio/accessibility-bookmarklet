@@ -1,12 +1,20 @@
 export default class ScreenreaderText
 {
-    name = "Screenreader Text";
+    name = "Show screenreader-only text";
+    selectors = [
+        '.visually-hidden',
+        '.sr-only',
+    ];
 
     enable() {
-        console.log('Screenreader enabled');
+        document.querySelectorAll(this.selectors.join(',')).forEach((node) => {
+            node.classList.add('dpab-visually-hidden-preview');
+        });
     }
 
     disable() {
-        console.log('Screenreader disabled');
+        document.querySelectorAll(this.selectors.join(',')).forEach((node) => {
+            node.classList.remove('dpab-visually-hidden-preview');
+        });
     }
 }

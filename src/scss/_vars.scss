@@ -3,10 +3,33 @@ $class: '.dpab';
 $panel: #{$class}__panel;
 $wrapper: #{$class}__wrapper;
 $marker: #{$class}__marker;
+$info: #{$class}__info;
+$tooltip: #{$class}\:tooltip;
+
+%panel {
+    background: white;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-family: sans-serif;
+    font-size: 16px;
+    padding: 1em;
+    width: 300px;
+    z-index: 99999;
+}
+
+%marker {
+    background-color: black;
+    color: white;
+    font-family: monospace;
+    font-size: 12px;
+    padding: 2px;
+    position: absolute;
+}
 
 :root {
     --#{$root}-valid-bg: green;
     --#{$root}-valid-fg: white;
     --#{$root}-invalid-bg: red;
     --#{$root}-invalid-fg: white;
+    --#{$root}-tooltip-bg: #ccc;
 }

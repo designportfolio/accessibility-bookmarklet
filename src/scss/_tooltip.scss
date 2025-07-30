@@ -1,0 +1,37 @@
+@use "vars";
+
+#{vars.$tooltip} {
+    @extend %panel;
+    background-color: var(--#{vars.$root}-tooltip-bg);
+    border: none;
+    box-shadow: none;
+    display: none;
+
+    &[data-show] {
+        display: block;
+    }
+
+    &__arrow {
+        visibility: hidden;
+
+        &, &::before {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: inherit;
+        }
+
+        &::before {
+            background-color: var(--#{vars.$root}-tooltip-bg);;
+            visibility: visible;
+            content: '';
+            transform: rotate(45deg);
+        }
+    }
+
+    // arrow positions
+    &[data-popper-placement^='top'] > #{vars.$tooltip}__arrow { bottom: -10px; }
+    &[data-popper-placement^='bottom'] > #{vars.$tooltip}__arrow { top: -10px; }
+    &[data-popper-placement^='left'] > #{vars.$tooltip}__arrow { right: -10px; }
+    &[data-popper-placement^='right'] > #{vars.$tooltip}__arrow { left: -10px; }
+}
