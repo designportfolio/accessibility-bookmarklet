@@ -22,7 +22,7 @@
         }
 
         &::before {
-            background-color: var(--#{vars.$root}-tooltip-bg);;
+            background-color: var(--#{vars.$root}-tooltip-bg);
             visibility: visible;
             content: '';
             transform: rotate(45deg);
