@@ -1,9 +1,9 @@
 $root: 'dpab';
-$class: '.dpab';
-$panel: #{$class}__panel;
-$wrapper: #{$class}__wrapper;
-$marker: #{$class}__marker;
-$info: #{$class}__info;
+$class: '.#{$root}';
+$panel: #{$class}\:panel;
+$wrapper: #{$class}\:wrapper;
+$marker: #{$class}\:marker;
+$info: #{$class}\:info;
 $tooltip: #{$class}\:tooltip;
 
 %panel {

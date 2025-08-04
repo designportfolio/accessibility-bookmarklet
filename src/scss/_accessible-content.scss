@@ -1,4 +1,6 @@
-.dpab__accessible-content {
+@use "vars";
+
+#{vars.$root}__accessible-content {
     background-color: white;
     color: black;
     display: block;

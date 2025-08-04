@@ -1,5 +1,7 @@
 import { createPopper } from '@popperjs/core';
 
+import vars from '../variables';
+
 export default class Base
 {
     name;
@@ -8,19 +10,18 @@ export default class Base
     poppers = [];
 
     constructor() {
-
         // create tooltip button
         const tooltip = document.createElement('div');
-        tooltip.classList.add('dpab:tooltip');
+        tooltip.classList.add(vars.tooltip);
         tooltip.innerText = 'i';
 
         this.elements = {
-            wrapper: this.#createNode(`<div class="dpab__wrapper"></div>`),
-            marker: this.#createNode(`<span class="dpab__marker"></span>`),
-            info: this.#createNode(`<button type="button" class="dpab__info">i</button>`),
+            wrapper: this.#createNode(`<div class="${vars.wrapper}"></div>`),
+            marker: this.#createNode(`<span class="${vars.marker}"></span>`),
+            info: this.#createNode(`<button type="button" class="${vars.info}">i</button>`),
             tooltip: this.#createNode(`
-                <div class="dpab:tooltip" role="tooltip">
-                    <div class="dpab:tooltip__arrow" data-popper-arrow></div>
+                <div class="${vars.tooltip}" role="tooltip">
+                    <div class="${vars.tooltip}__arrow" data-popper-arrow></div>
                     <h2></h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                 </div>
@@ -37,7 +38,7 @@ export default class Base
                 // wrap each element
                 const wrapper = this.elements.wrapper.cloneNode();
                 const displayClass = window.getComputedStyle(node).display.includes('inline') ? 'inline-block' : 'block';
-                wrapper.classList.add(`dpab__wrapper--${displayClass}`);
+                wrapper.classList.add(`${vars.wrapper}--${displayClass}`);
 
                 // insert marker into wrapper
                 node.parentNode.insertBefore(wrapper, node);
@@ -99,10 +100,10 @@ export default class Base
         let results = [...document.querySelectorAll(selector)];
 
         // don't test the panel
-        results = results.filter((node) => !node.closest('.dpab__panel'));
+        results = results.filter((node) => !node.closest(vars.selector(vars.panel)));
 
         // don't test the tooltip
-        results = results.filter((node) => !node.closest('.dpab\\:tooltip'));
+        results = results.filter((node) => !node.closest(vars.selector(vars.tooltip)));
 
         return results;
     }
