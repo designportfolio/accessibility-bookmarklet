@@ -6,7 +6,6 @@ const info = `${root}:info`;
 const tooltip = `${root}:tooltip`;
 
 export default {
-    selector: (className) => `.${className.replace(':', '\\:')}`,
     root,
     panel,
     wrapper,

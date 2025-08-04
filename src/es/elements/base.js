@@ -1,31 +1,19 @@
-import { createPopper } from '@popperjs/core';
-
+import { createNode, selector as selectorMaker } from '../helpers';
 import vars from '../variables';
+import Popup from '../popup';
 
 export default class Base
 {
     name;
     selectors;
     elements = {};
-    poppers = [];
+    popups = [];
 
     constructor() {
-        // create tooltip button
-        const tooltip = document.createElement('div');
-        tooltip.classList.add(vars.tooltip);
-        tooltip.innerText = 'i';
-
         this.elements = {
-            wrapper: this.#createNode(`<div class="${vars.wrapper}"></div>`),
-            marker: this.#createNode(`<span class="${vars.marker}"></span>`),
-            info: this.#createNode(`<button type="button" class="${vars.info}">i</button>`),
-            tooltip: this.#createNode(`
-                <div class="${vars.tooltip}" role="tooltip">
-                    <div class="${vars.tooltip}__arrow" data-popper-arrow></div>
-                    <h2></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                </div>
-            `),
+            wrapper: createNode(`<div class="${vars.wrapper}"></div>`),
+            marker: createNode(`<span class="${vars.marker}"></span>`),
+            info: createNode(`<button type="button" class="${vars.info}">i</button>`),
         };
     }
 
@@ -45,40 +33,24 @@ export default class Base
                 wrapper.appendChild(node);
                 wrapper.prepend(marker.cloneNode(true));
 
-                // add info button and tooltip
-                const info = this.elements.info.cloneNode(true);
-                const tooltip = this.elements.tooltip.cloneNode(true);
-                tooltip.querySelector('h2').innerHTML = `&lt;${selector}>`;
-
-                wrapper.append(info);
-                wrapper.append(tooltip);
-
-                const popper = createPopper(info, tooltip, {
-                    modifiers: [
-                        {
-                            name: 'offset',
-                            options: {
-                                offset: [0, 14],
-                            },
-                        },
-                    ],
-                    placement: 'top',
-                });
-
-                info.addEventListener('click', this.#handleTooltip.bind(this, tooltip, popper));
-
-                this.poppers.push(popper);
-
                 // element specific code
                 // callback(wrapper, node);
+
+                // add info button
+                const info = this.elements.info.cloneNode(true);
+                wrapper.append(info);
+
+                // create popup
+                const popup = new Popup(selector, wrapper, info);
+                this.popups.push(popup);
             });
         });
     }
 
     disable() {
         // destroy tooltips and reset array
-        this.poppers.forEach((popper) => popper.destroy());
-        this.poppers = [];
+        this.popups.forEach((popup) => popup.destroy());
+        this.popups = [];
 
         this.#lookup(this.selectors.join(',')).forEach((node) => {
             const wrapper = node.parentNode;
@@ -91,29 +63,15 @@ export default class Base
         });
     }
 
-    #createNode(html) {
-        const docFragment = new DOMParser().parseFromString(html, 'text/html');
-        return docFragment.body.childNodes[0];
-    }
-
     #lookup(selector) {
         let results = [...document.querySelectorAll(selector)];
 
         // don't test the panel
-        results = results.filter((node) => !node.closest(vars.selector(vars.panel)));
+        results = results.filter((node) => !node.closest(selectorMaker(vars.panel)));
 
         // don't test the tooltip
-        results = results.filter((node) => !node.closest(vars.selector(vars.tooltip)));
+        results = results.filter((node) => !node.closest(selectorMaker(vars.tooltip)));
 
         return results;
-    }
-
-    #handleTooltip(tooltip, popper) {
-        if (tooltip.hasAttribute('data-show')) {
-            tooltip.removeAttribute('data-show');
-        } else {
-            tooltip.setAttribute('data-show', '');
-            popper.update();
-        }
     }
 }

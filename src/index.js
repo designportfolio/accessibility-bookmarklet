@@ -1,6 +1,8 @@
 import './scss/index.scss';
 import './demo.css';
 
+import { selector } from './es/helpers';
+
 import vars from './es/variables';
 
 import Anchors from './es/elements/anchors';
@@ -28,7 +30,7 @@ const tools = [
 // main functionality
 const main = () => {
     // open/close panel
-    const panel = document.querySelector(vars.selector(vars.panel));
+    const panel = document.querySelector(selector(vars.panel));
     panel.classList.contains(`${vars.panel}--open`) ? panel.classList.remove(`${vars.panel}--open`) : panel.classList.add(`${vars.panel}--open`);
 
     return true;
@@ -108,8 +110,8 @@ const attachHandler = (node, callback, eventType = 'click') => {
     `);
 
     // attach close button
-    attachHandler(document.querySelector(vars.selector(`${vars.panel}__close`)), () => {
-        document.querySelector(vars.selector(vars.panel)).classList.remove(`${vars.panel}--open`);
+    attachHandler(document.querySelector(selector(`${vars.panel}__close`)), () => {
+        document.querySelector(selector(vars.panel)).classList.remove(`${vars.panel}--open`);
     });
 
     // attach download button
@@ -122,7 +124,7 @@ const attachHandler = (node, callback, eventType = 'click') => {
     // });
 
     //
-    const elementList = document.querySelector(vars.selector(`${vars.panel}__elements`));
+    const elementList = document.querySelector(selector(`${vars.panel}__elements`));
     elements.forEach((obj) => {
         const el = appendHtml(`<li class=""><label><input type="checkbox"> ${obj.name}</label>`, elementList);
         attachHandler(el, (e) => {
@@ -131,7 +133,7 @@ const attachHandler = (node, callback, eventType = 'click') => {
     });
 
     //
-    const toolList = document.querySelector(vars.selector(`${vars.panel}__tools`));
+    const toolList = document.querySelector(selector(`${vars.panel}__tools`));
     tools.forEach((obj) => {
         const el = appendHtml(`<li class=""><label><input type="checkbox"> ${obj.name}</label>`, toolList);
         attachHandler(el, (e) => {
